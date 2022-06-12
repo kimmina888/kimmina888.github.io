@@ -83,7 +83,12 @@ function connectDB() {
 	mongoose.Promise = global.Promise;  // mongoose의 Promise 객체는 global의 Promise 객체 사용하도록 함
 	mongoose.Promise = global.Promise;
 	//mongoose.connect(databaseUrl);
-	mongoose.connect(databaseUrl, { useMongoClient: true });
+	mongoose.connect(databaseUrl, {
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+		useFindAndModify: false,
+		useCreateIndex: true,
+	  });
 	database = mongoose.connection;
 
 	database.on('error', console.error.bind(console, 'mongoose connection error.'));
